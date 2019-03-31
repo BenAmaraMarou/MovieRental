@@ -5,33 +5,32 @@ namespace MovieRental.Tests
 {
     public class CustomerBuilder
     {
+        private const String DefaultName = "Roberts";
 
-        public static readonly String NAME = "Roberts";
+        private String _name = DefaultName;
+        private List<Rental> _rentals = new List<Rental>();
 
-    private String name = NAME;
-        private List<Rental> rentals = new List<Rental>();
-
-        public Customer build()
+        public Customer Build()
         {
-            Customer result = new Customer(name);
-            foreach (Rental rental in rentals)
+            Customer result = new Customer(_name);
+
+            foreach (Rental rental in _rentals)
             {
-                result.addRental(rental);
+                result.AddRental(rental);
             }
             return result;
         }
 
-        public CustomerBuilder withName(String name)
+        public CustomerBuilder WithName(String name)
         {
-            this.name = name;
+            _name = name;
             return this;
         }
 
-        public CustomerBuilder withRentals(params Rental[] rentals)
+        public CustomerBuilder WithRentals(params Rental[] rentals)
         {
-            this.rentals.AddRange(rentals);
+            _rentals.AddRange(rentals);
             return this;
         }
     }
-
 }

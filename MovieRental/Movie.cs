@@ -2,33 +2,29 @@
 
 namespace MovieRental
 {
-    public class Movie
+    public abstract class Movie
     {
-        public const int CHILDRENS = 2;
-        public const int NEW_RELEASE = 1;
-        public const int REGULAR = 0;
-
         private String _title;
-        private int _priceCode;
 
-        public Movie(String title, int priceCode)
+        public Movie(String title)
         {
             _title = title;
-            _priceCode = priceCode;
         }
 
-        public int getPriceCode()
-        {
-            return _priceCode;
-        }
-
-        public void setPriceCode(int arg)
-        {
-            _priceCode = arg;
-        }
-        public String getTitle()
+        public String GetTitle()
         {
             return _title;
         }
+
+        public double GetPrice(int daysRented)
+        {
+            return BasicPrice + GetDailyPrice(daysRented);
+        }
+
+        protected abstract double BasicPrice { get; }
+
+        protected abstract double GetDailyPrice(int daysRented);
+
+        public abstract int GetBonus(int daysRented);
     }
 }

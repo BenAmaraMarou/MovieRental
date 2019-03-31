@@ -10,16 +10,20 @@
             _movie = movie;
             _daysRented = daysRented;
         }
-
-        public int getDaysRented()
+                
+        public double GetPrice()
         {
-            return _daysRented;
+            return _movie.GetPrice(_daysRented);
         }
 
-        public Movie getMovie()
+        public int GetRenterPoints()
         {
-            return _movie;
+            return 1 + _movie.GetBonus(_daysRented);
         }
-    }
 
+        public string Statement()
+        {
+            return "\t" + _movie.GetTitle() + "\t" + GetPrice() + "\n";
+        }
+    }    
 }
